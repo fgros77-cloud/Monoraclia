@@ -16,7 +16,12 @@ if "intro_done" not in st.session_state:
     st.session_state.intro_done = False
 
 if not st.session_state.intro_done:
-
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown(
+            "<h1 style='text-align:center;color:#a78bfa;'>🔮 MONORACLIA</h1>",
+            unsafe_allow_html=True
+        )
     st.markdown("""
     <div style="
         position:fixed;
@@ -30,8 +35,8 @@ if not st.session_state.intro_done:
         z-index:9999;
         color:white;
     ">
-        <h1 style="color:#a78bfa;font-size:50px;">🔮 ORACLIA</h1>
         <p>Connexion aux énergies...L'oracle vous guide</p>
+                
         ✨
     </div>
     """, unsafe_allow_html=True)
@@ -123,7 +128,7 @@ text-shadow:
     0 0 30px rgba(140,100,255,0.8);
 animation: fadeIn 2s ease-in-out;
 '>
-🔮 ORACLIA
+🔮 MONORACLIA
 </h1>
 
 <style>
@@ -352,12 +357,15 @@ if "selected" not in st.session_state:
 # =========================
 # 🔮 INPUT
 # =========================
+
 st.markdown("## 🔮 Tes informations")
 
 col1, col2 = st.columns(2)
 
 with col1:
     date_str = st.text_input("Date de naissance", "01/01/1990")
+
+    
 
 with col2:
     question = st.text_input("Ta question (Laisse ton intuition s'ouvrir)", "", key="question_unique")
@@ -368,8 +376,12 @@ if "last_question" not in st.session_state:
 if question != st.session_state.last_question:
     st.session_state.tirages_count = 0
     st.session_state.last_question = question
+
+    
 try:
     date_naissance = datetime.strptime(date_str, "%d/%m/%Y").date()
+    
+    
 except:
     date_naissance = None
 
